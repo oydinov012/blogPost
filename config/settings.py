@@ -129,11 +129,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 
+ # yoki urls.py dagi nomini yozishingiz mumkin: 'login-view'
+# Tizimga kirmagan foydalanuvchilar qaysi manzilga qayta yo'naltirilishini belgilaydi
+LOGIN_URL = '/auth/login/' 
 
 AUTH_USER_MODEL = "users.CustomUser"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "media-files"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [

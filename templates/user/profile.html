@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}  profil  {% endblock title %}
+
+
+{% block content %}
+
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+        <div class="text-center my-3">
+    <img src="{{ users.photo.url }}" 
+         alt="Profile picture" 
+         class="rounded-circle img-thumbnail border-primary shadow-sm" 
+         style="width: 120px; height: 120px; object-fit: cover;">
+</div>
+        <span class="name mt-3">{{ users.first_name }} {{ users.last_name }}</span>
+        <span class="idd"><strong>Username:</strong> @{{ users.username }}</span>
+        <span class="idd"><strong>Email:</strong> {{ users.email }}</span>
+        <p><strong>Ism:</strong> 
+        {% if users.first_name %}{{ users.first_name }}{% else %}<span class="text-muted">Kiritilmagan</span>{% endif %}
+    </p>
+    
+    <p><strong>Familiya:</strong> 
+        {% if users.last_name %}{{ users.last_name }}{% else %}<span class="text-muted">Kiritilmagan</span>{% endif %}
+    </p>
+        <div class=" px-2 rounded mt-4 date "> <span class="join">Joined {{ users.date_joined | date:"M d, Y" }}</span> </div>
+    </div>
+
+
+    
+    
+
+    <hr>
+    <a href="{% url 'home-page' %}" class="btn btn-secondary">Asosiy sahifa</a>
+
+    <a href="{% url 'profil-update-view' %}" class="btn btn-secondary">Tahrirlash</a>
+</div>
+{% endblock %}

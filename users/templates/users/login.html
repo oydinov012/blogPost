@@ -12,7 +12,7 @@
                 {% csrf_token %}
                 {{ aform | crispy }}
 
-                <button class="btn btn-primary">Log in</button>  <span class="ms-3">No account? Then, <a href="#">get registered</a></span>
+                <button class="btn btn-primary">Log in</button>  <span class="ms-3">No account? Then, <a href="{% url 'register-view' %}">register</a></span>
             </form>
         </div>
     </div>
