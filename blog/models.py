@@ -47,14 +47,47 @@ class Post(models.Model):
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name='post_users')
     title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(default='media/blog.jpeg', upload_to='media-files', validators=[
-        FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])])
+    
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_category')
 
     tags = models.ManyToManyField(Tags,blank=True)
     is_approved = models.BooleanField(default=False)
 
+    @property
+    def cover_media(self):
+        return self.media.filter(is_cover=True).first() or self.media.first() # type: ignore
+
     def __str__(self):
         return f"{self.user}ning {self.title} nomli posti"
+
+class PostMedia(models.Model):
+
+    IMAGE = "image"
+    VIDEO = "video"
+    FILE = "file"
+
+    MEDIA_TYPES = [
+        (IMAGE, "Image"),
+        (VIDEO, "Video"),
+        (FILE, "File"),
+    ]
+
+    blog = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name="media"
+    )
+
+    media_type = models.CharField(
+        max_length=20,
+        choices=MEDIA_TYPES,
+        default=IMAGE
+
+    )
+
+    file = models.FileField(default='media/blog.jpeg',upload_to="blog_media/",)
+    created_at = models.DateTimeField(auto_now_add=True)
+    uploaded_at = models.DateTimeField(auto_now=True)
+    is_cover = models.BooleanField(default=False)
 
 

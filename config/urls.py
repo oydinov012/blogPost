@@ -10,9 +10,10 @@ from config.views import home_page
 
 
 urlpatterns = [
-    path('',home_page, name='home-page'),
     path('admin/', admin.site.urls),
-    path('auth/',include('users.urls'), name='users')
+    path('',home_page, name='home-page'),
+    path('auth/',include('users.urls'), name='users'),
+    path('post/',include('blog.urls'), name='post'),
 ]
 
 if settings.DEBUG:
