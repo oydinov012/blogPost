@@ -1,3 +1,5 @@
+from turtle import update
+
 from django.db import models
 from django.core.validators import FileExtensionValidator, MaxLengthValidator
 from  users.models import CustomUser
@@ -51,8 +53,9 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_category')
 
     tags = models.ManyToManyField(Tags,blank=True)
-    is_approved = models.BooleanField(default=False)
-
+    is_approved = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     @property
     def cover_media(self):
         return self.media.filter(is_cover=True).first() or self.media.first() # type: ignore

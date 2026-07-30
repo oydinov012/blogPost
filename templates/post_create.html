@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4 border-0">
+                <h3 class="mb-4">Yangi post yaratish</h3>
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    
+                    <button type="submit" class="btn btn-success w-100 mt-3">Postni chop etish</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

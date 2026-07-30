@@ -1,0 +1,401 @@
+{% extends 'base.html' %}
+{% block content %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<style>
+    :root {
+        --ink: #1b2430;
+        --slate: #4a5568;
+        --line: #e2e6ec;
+        --accent: #2f5ce4;
+        --accent-soft: #eef2fe;
+        --panel: #f7f9fc;
+    }
+    body {
+        font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--ink);
+        background: #ffffff;
+    }
+    .navbar-brand {
+        font-weight: 700;
+        letter-spacing: .2px;
+    }
+    .help-hero {
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+    }
+    .help-hero h1 {
+        font-weight: 800;
+        font-size: 2.1rem;
+    }
+    .help-hero p.lead {
+        color: var(--slate);
+        max-width: 640px;
+    }
+    .search-box {
+        max-width: 520px;
+    }
+    .search-box .form-control {
+        border-radius: 999px 0 0 999px;
+        border-color: var(--line);
+        padding-left: 1.25rem;
+    }
+    .search-box .btn {
+        border-radius: 0 999px 999px 0;
+        background: var(--accent);
+        border-color: var(--accent);
+    }
+    .step-num {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .step-item:not(:last-child) {
+        border-bottom: 1px dashed var(--line);
+        padding-bottom: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+    .section-eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-size: .75rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+    .card-feature {
+        border: 1px solid var(--line);
+        border-radius: .75rem;
+        height: 100%;
+        transition: box-shadow .15s ease, transform .15s ease;
+    }
+    .card-feature:hover {
+        box-shadow: 0 .5rem 1.25rem rgba(47,92,228,.08);
+        transform: translateY(-2px);
+    }
+    .card-feature .icon-wrap {
+        width: 46px;
+        height: 46px;
+        border-radius: .6rem;
+        background: var(--accent-soft);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+    .accordion-button:not(.collapsed) {
+        background: var(--accent-soft);
+        color: var(--accent);
+    }
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: var(--line);
+    }
+    footer {
+        background: var(--ink);
+        color: #cbd4e3;
+    }
+    footer a { color: #ffffff; }
+    .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #22c55e;
+        display: inline-block;
+    }
+    .btn-outline-accent {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+    .btn-outline-accent:hover {
+        background: var(--accent);
+        color: #fff;
+    }
+    .toc-link {
+        color: var(--slate);
+        text-decoration: none;
+        display: block;
+        padding: .35rem 0;
+        border-left: 2px solid transparent;
+        padding-left: .75rem;
+    }
+    .toc-link:hover, .toc-link.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+    }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-life-preserver text-primary me-1"></i> Yordam Markazi
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#qanday-ishlaydi">Qanday ishlaydi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#imkoniyatlar">Imkoniyatlar</a></li>
+                <li class="nav-item"><a class="nav-link" href="#savollar">Savol-javob</a></li>
+                <li class="nav-item"><a class="nav-link" href="#aloqa">Aloqa</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="help-hero py-5">
+    <div class="container py-3">
+        <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="status-dot"></span>
+            <small class="text-muted">Tizim holati: barqaror ishlamoqda</small>
+        </div>
+        <h1>Sizga qanday yordam bera olamiz?</h1>
+        <p class="lead">Dasturning ishlash tartibi, asosiy imkoniyatlari va tez-tez beriladigan savollarga javoblarni shu yerdan toping.</p>
+
+        <form class="d-flex search-box mt-4" role="search" onsubmit="return false;">
+            <input class="form-control" type="search" placeholder="Masalan: parolni tiklash, post qo'shish...">
+            <button class="btn text-white" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+</header>
+
+<div class="container py-5">
+    <div class="row">
+
+        <!-- CHAP TOMONDAGI NAVIGATSIYA -->
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="sticky-top" style="top: 90px;">
+                <p class="section-eyebrow mb-2">Mundarija</p>
+                <a class="toc-link" href="#qanday-ishlaydi">1. Dastur qanday ishlaydi</a>
+                <a class="toc-link" href="#imkoniyatlar">2. Asosiy imkoniyatlar</a>
+                <a class="toc-link" href="#savollar">3. Savol-javoblar</a>
+                <a class="toc-link" href="#aloqa">4. Qo'llab-quvvatlash bilan bog'lanish</a>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+
+            <!-- 1. QANDAY ISHLAYDI -->
+            <section id="qanday-ishlaydi" class="mb-5">
+                <p class="section-eyebrow mb-1">Boshlash uchun</p>
+                <h2 class="fw-bold mb-4">Dastur qanday ishlaydi</h2>
+
+                <div class="card p-4 border-0" style="background: var(--panel);">
+                    <div class="step-item d-flex gap-3">
+                        <div class="step-num">1</div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Ro'yxatdan o'ting yoki tizimga kiring</h6>
+                            <p class="text-muted mb-0">Email va parolingiz orqali hisobingizni yarating. Tizimga kirgach, barcha shaxsiy funksiyalar (post yozish, kommentariya qoldirish) ochiladi.</p>
+                        </div>
+                    </div>
+                    <div class="step-item d-flex gap-3">
+                        <div class="step-num">2</div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Kontent yarating yoki ko'rib chiqing</h6>
+                            <p class="text-muted mb-0">Asosiy sahifada mavjud postlarni ko'rasiz. O'zingiz ham rasm, video va matn qo'shib, yangi post joylashtirishingiz mumkin.</p>
+                        </div>
+                    </div>
+                    <div class="step-item d-flex gap-3">
+                        <div class="step-num">3</div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Muloqotga kirishing</h6>
+                            <p class="text-muted mb-0">Har qanday post ostiga fikr-mulohaza (kommentariya) qoldirishingiz, o'z kommentariyangizni keyinchalik tahrirlashingiz yoki o'chirishingiz mumkin.</p>
+                        </div>
+                    </div>
+                    <div class="step-item d-flex gap-3 mb-0 pb-0 border-0">
+                        <div class="step-num">4</div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Profilingizni boshqaring</h6>
+                            <p class="text-muted mb-0">Shaxsiy sozlamalar bo'limidan ma'lumotlaringizni yangilang, o'z postlaringiz ro'yxatini ko'ring yoki hisobingizni sozlang.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. IMKONIYATLAR -->
+            <section id="imkoniyatlar" class="mb-5">
+                <p class="section-eyebrow mb-1">Funksiyalar</p>
+                <h2 class="fw-bold mb-4">Asosiy imkoniyatlar</h2>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card-feature p-3 d-flex flex-row gap-3 align-items-start">
+                            <div class="icon-wrap"><i class="bi bi-images"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Rasm va video galereyasi</h6>
+                                <p class="text-muted small mb-0">Har bir postga bir nechta rasm yoki video biriktirish mumkin.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-feature p-3 d-flex flex-row gap-3 align-items-start">
+                            <div class="icon-wrap"><i class="bi bi-chat-dots"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Kommentariya tizimi</h6>
+                                <p class="text-muted small mb-0">Postlar ostida fikr bildiring, o'zingizning kommentariyangizni tahrirlang yoki o'chiring.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-feature p-3 d-flex flex-row gap-3 align-items-start">
+                            <div class="icon-wrap"><i class="bi bi-tags"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Kategoriya va teglar</h6>
+                                <p class="text-muted small mb-0">Postlarni kategoriya va teglar orqali qidirish va saralash imkoniyati.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-feature p-3 d-flex flex-row gap-3 align-items-start">
+                            <div class="icon-wrap"><i class="bi bi-shield-lock"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Xavfsiz kirish</h6>
+                                <p class="text-muted small mb-0">Faqat hisob egasi o'z postini yoki kommentariyasini tahrirlashi va o'chirishi mumkin.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. FAQ -->
+            <section id="savollar" class="mb-5">
+                <p class="section-eyebrow mb-1">Ko'p so'raladigan</p>
+                <h2 class="fw-bold mb-4">Savol-javoblar</h2>
+
+                <div class="accordion" id="faqAccordion">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Parolimni unutib qoldim, nima qilishim kerak?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Tizimga kirish sahifasidagi "Parolni unutdingizmi?" havolasini bosing, ro'yxatdan o'tgan emailingizni kiriting va yuborilgan yo'riqnoma orqali yangi parol o'rnating.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                O'zim yozgan postni qanday tahrirlashim yoki o'chirishim mumkin?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Post sahifasiga o'ting. Agar post sizga tegishli bo'lsa, "Tahrirlash" va "O'chirish" tugmalari avtomatik ko'rinadi. Boshqa foydalanuvchilarning postlari uchun bu tugmalar ko'rinmaydi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Kommentariya qoldirish uchun nima talab qilinadi?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Kommentariya qoldirish uchun tizimga kirgan bo'lishingiz kerak. Agar tizimga kirmagan bo'lsangiz, sahifada login qilish uchun havola ko'rinadi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Bitta postga nechta rasm yoki video qo'shsam bo'ladi?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Cheklov yo'q — xohlagancha rasm yoki video biriktirishingiz mumkin, ular post sahifasida galereya ko'rinishida chiqadi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                Boshqa foydalanuvchining barcha postlarini qanday ko'raman?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Muallif ismiga bosing — sizga o'sha foydalanuvchining barcha postlari ro'yxati bilan alohida sahifa ochiladi.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 4. ALOQA -->
+            <section id="aloqa">
+                <p class="section-eyebrow mb-1">Hali ham yordam kerakmi?</p>
+                <h2 class="fw-bold mb-4">Qo'llab-quvvatlash bilan bog'lanish</h2>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card-feature p-4 text-center">
+                            <i class="bi bi-envelope fs-3 text-primary mb-2"></i>
+                            <h6 class="fw-bold">Email orqali</h6>
+                            <p class="text-muted small mb-0">support@dastur.uz</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-feature p-4 text-center">
+                            <i class="bi bi-telephone fs-3 text-primary mb-2"></i>
+                            <h6 class="fw-bold">Telefon orqali</h6>
+                            <p class="text-muted small mb-0">+998 90 000 00 00</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-feature p-4 text-center">
+                            <i class="bi bi-chat-square-text fs-3 text-primary mb-2"></i>
+                            <h6 class="fw-bold">Jonli chat</h6>
+                            <p class="text-muted small mb-0">Ish kunlari 09:00–18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="#" class="btn btn-outline-accent px-4 py-2 rounded-pill">
+                        <i class="bi bi-send me-1"></i> Murojaat yuborish
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="py-4 mt-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <small>&copy; 2026 Dastur nomi. Barcha huquqlar himoyalangan.</small>
+        <div class="mt-2 mt-md-0">
+            <a href="#" class="me-3 text-decoration-none"><i class="bi bi-question-circle"></i> Yordam</a>
+            <a href="#" class="text-decoration-none"><i class="bi bi-file-text"></i> Foydalanish shartlari</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+{% endblock %}
+</html>

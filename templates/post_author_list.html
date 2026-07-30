@@ -1,8 +1,41 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% block title %}Postlar{% endblock %}
+{% block title %}  {{user.username}}  {% endblock title %}
+
 
 {% block content %}
+
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+        <div class="text-center my-3">
+    <img src="{{ user.photo.url }}" 
+         alt="Profile picture" 
+         class="rounded-circle img-thumbnail border-primary shadow-sm" 
+         style="width: 120px; height: 120px; object-fit: cover;">
+</div>
+        <span class="name mt-3">{{ user.first_name }} {{ user.last_name }}</span>
+        <span class="idd"><strong>Username:</strong> @{{ user.username }}</span>
+        <span class="idd"><strong>Email:</strong> {{ users.email }}</span>
+        <p><strong>Ism:</strong> 
+        {% if users.first_name %}{{ users.first_name }}{% else %}<span class="text-muted">Kiritilmagan</span>{% endif %}
+    </p>
+    
+    <p><strong>Familiya:</strong> 
+        {% if users.last_name %}{{ users.last_name }}{% else %}<span class="text-muted">Kiritilmagan</span>{% endif %}
+    </p>
+        <div class=" px-2 rounded mt-4 date "> <span class="join">Joined {{ users.date_joined | date:"M d, Y" }}</span> </div>
+    </div>
+
+
+    
+    
+
+    <a href="#" class="btn btn-secondary">Xabar yuborish</a>
+    
+    <a href="#" class="btn btn-secondary">Do'stlar qatoriga qo'shish</a>
+    <hr>
+</div>
+<hr>
 
 <div class="container mt-5">
     <div class="row g-4">
@@ -35,11 +68,7 @@
 
                 <div class="card-body d-flex flex-column">
 
-                    <h6 class="text-primary">
-                        <a href="{% url 'post-author-list' blog.user.id %}">
-                            {{ blog.user.username }}
-                        </a>
-                    </h6>
+                    
 
                     <h5 class="card-title">
                         {{ blog.title }}
@@ -52,13 +81,7 @@
                     <a href="{% url 'post-detail' blog.id %}" class="btn btn-primary mt-auto">
                         Batafsil
                     </a>
-                    <div>
-                        {% if blog.user == request.user %}
-                        <a href="{% url 'post-update' blog.id %}" class="btn btn-primary mt-auto">
-                        Tahrirlash
-                    </a>
-                        {% endif %}
-                    </div>
+                    
                 </div>
 
             </div>
@@ -68,5 +91,6 @@
 
     </div>
 </div>
+
 
 {% endblock %}

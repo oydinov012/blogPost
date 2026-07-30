@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h3>comment delete</h3>
+    <h4>{{comment.comment}}</h4> 
+
+    <div class="row">
+        <div class="col-4">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form | crispy }}
+
+                <button class="btn btn-primary">O'chirish</button>
+            </form>
+        </div>
+
+    </div>
+
+
+{% endblock %}

@@ -1,7 +1,64 @@
 {% extends "base.html" %}
 
-{% block content%}
+{% block title %} Asosiy sahifa {% endblock %}
 
+{% block content %}
 
+<!-- HERO QISMI -->
+<div class="container-fluid bg-light py-5 mb-5">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">BlogPost'ga xush kelibsiz</h1>
+        <p class="col-md-8 mx-auto lead text-muted">
+            Fikringizni ulashing, qiziqarli postlarni o'qing va boshqa foydalanuvchilar bilan muloqotda bo'ling.
+            Rasm, video va matn orqali o'z hikoyangizni yarating.
+        </p>
+        <a href="{% url 'post-list' %}" class="btn btn-primary btn-lg px-4 me-2">Postlarni ko'rish</a>
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login-view' %}" class="btn btn-outline-secondary btn-lg px-4">Ro'yxatdan o'tish</a>
+        {% else %}
+            <a href="{% url 'post-create' %}" class="btn btn-outline-secondary btn-lg px-4">Post joylash</a>
+        {% endif %}
+    </div>
+</div>
 
-{% endblock  %}
+<div class="container mb-5">
+
+    <!-- SAYT HAQIDA -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <img src="https://picsum.photos/seed/blogpost1/600/400" class="img-fluid rounded shadow-sm" alt="Blog haqida">
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">Bu sayt nima uchun kerak?</h2>
+            <p class="text-muted">
+                BlogPost — bu foydalanuvchilar o'z fikrlari, tajribalari va qiziqarli voqealarini
+                boshqalar bilan ulashishi mumkin bo'lgan oddiy va qulay platforma. Har bir post
+                rasm yoki video bilan boyitilishi, kategoriya va teglar bo'yicha tartiblanishi mumkin.
+            </p>
+            <ul class="list-unstyled text-muted">
+                <li><i class="bi bi-check2-circle text-primary me-2"></i>Bepul va tez ro'yxatdan o'tish</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i>Postlarga rasm va video qo'shish</li>
+                <li><i class="bi bi-check2-circle text-primary me-2"></i>Kommentariya orqali muloqot</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- QANDAY ISHLAYDI (QISQACHA) -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6 order-md-2">
+            <img src="https://picsum.photos/seed/blogpost2/600/400" class="img-fluid rounded shadow-sm" alt="Qanday ishlaydi">
+        </div>
+        <div class="col-md-6 order-md-1">
+            <h2 class="fw-bold mb-3">Qanday ishlaydi?</h2>
+            <p class="text-muted">
+                Tizimga kiring, o'zingizni qiziqtirgan mavzuda post yozing yoki boshqa
+                foydalanuvchilarning postlarini o'qib, fikringizni kommentariya orqali bildiring.
+                Barcha postlaringizni istalgan vaqtda tahrirlash yoki o'chirish imkoniyatiga egasiz.
+            </p>
+            <a href="{% url 'help' %}" class="btn btn-link ps-0">Batafsil yordam sahifasida &rarr;</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
