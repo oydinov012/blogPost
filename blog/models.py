@@ -1,7 +1,7 @@
-from turtle import update
 
 from django.db import models
 from django.core.validators import FileExtensionValidator, MaxLengthValidator
+from config.settings import DATABASES
 from  users.models import CustomUser
 """
 Postlarda bo‘lishi kerak
@@ -29,30 +29,23 @@ Bo‘limi (category)
 Teglari (tags)"""
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=200)
 
-    def __str__(self):
-        return self.name
-    
-
-class Tags(models.Model):
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-
+DASTURLASH,XABARLAR,TALIM,MOLIYA,TIBBIYOT = ('dasturlash','xabarlar','talim','moliya','tibbiyot' )
     
 
 class Post(models.Model):
+    CATEGORY_CHOISES=(
+        (DASTURLASH,DASTURLASH),
+        (XABARLAR,XABARLAR),
+        (TALIM,TALIM),
+        (MOLIYA,MOLIYA),
+        (TIBBIYOT,TIBBIYOT)
+    )
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name='post_users')
     title = models.CharField(max_length=200)
     content = models.TextField()
-    
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_category')
-
-    tags = models.ManyToManyField(Tags,blank=True)
+    tags = models.CharField(max_length=200)
+    category = models.CharField(max_length=200,choices=CATEGORY_CHOISES ,default=XABARLAR)
     is_approved = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

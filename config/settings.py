@@ -75,17 +75,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+#
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),       # PostgreSQL da yaratilgan bazangiz nomi
-        'USER':env('DB_USER'),    # PostgreSQL foydalanuvchi nomi (odatda 'postgres')
-        'PASSWORD': env('DB_PASSWORD'),      # Baza foydalanuvchisining paroli
-        'HOST': 'localhost',      # Server manzili (agar boshqa qurilma bo'lsa IP manzil)
-        'PORT': '5432',           # PostgreSQL standart porti
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# postgres uchun sozlamalar 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),       # PostgreSQL da yaratilgan bazangiz nomi
+#         'USER':env('DB_USER'),    # PostgreSQL foydalanuvchi nomi (odatda 'postgres')
+#         'PASSWORD': env('DB_PASSWORD'),      # Baza foydalanuvchisining paroli
+#         'HOST': env('DB_HOST'),      # Server manzili (agar boshqa qurilma bo'lsa IP manzil)
+#         'PORT': '5432',           # PostgreSQL standart porti
+#     }
+# }
 
 
 
@@ -116,13 +124,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+USE_TZ = True
 USE_I18N = True
 
-USE_TZ = True
-# LOGIN_URL = "users:login"
-
-        # CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-        # CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
 # Static files (CSS, JavaScript, Images)
@@ -149,7 +153,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-
+# keyinchalik qoshiladi
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = env('EMAIL_HOST_USER')
@@ -157,7 +161,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
-
 
 
 
