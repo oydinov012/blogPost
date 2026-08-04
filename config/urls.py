@@ -6,12 +6,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from config import settings
-from config.views import home_page , HelpView
+from config.views import HomePageView , HelpView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home_page, name='home-page'),
+    path('',HomePageView.as_view(), name='home-page'),
     path('help/',HelpView.as_view(), name='help'),
     path('auth/',include('users.urls'), name='users'),
     path('post/',include('blog.urls'), name='post'),

@@ -1,12 +1,13 @@
-import re
+from blog.models import Post
 
 from django.views import View
 from django.shortcuts import render , redirect
 
 
-def home_page(request):
-
-    return render(request,'home.html')
+class HomePageView(View):
+    def get(self,req):
+        post = Post.objects.order_by('-comment_count')[:3]
+        return render(req,'home.html',{'posts':post})
 
 
 class HelpView(View):
